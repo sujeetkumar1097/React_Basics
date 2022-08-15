@@ -4,12 +4,20 @@ class IndecisionApp extends React.Component {
         this.removeAllOptions = this.removeAllOptions.bind(this);
         this.handlePick = this.handlePick.bind(this);
         this.addValueToOptions = this.addValueToOptions.bind(this);
+        this.removeSingleOption = this.removeSingleOption.bind(this);
+
         this.state = {
             options : props.options,
             appName : 'Indecision',
             subTitle : 'Create your Application'
         }
     };
+
+    removeSingleOption(opt) { //ths syntax is function assign to a object property
+        const filtered = this.state.options.filter((val) => val !== opt);
+        this.setState((prev) => ({options : filtered}));
+        
+    }
 
     removeAllOptions() {
         this.setState(() => ({options : []})); //prevState is not required as parameter
@@ -38,7 +46,8 @@ class IndecisionApp extends React.Component {
                 <Header appName={this.state.appName} subTitle={this.state.subTitle}/>
                 <Action isOptionsEmpty={this.state.options.length > 0} handlePick={this.handlePick}/>
                 <AddOption addValueToOptions={this.addValueToOptions}/>
-                <Options options={this.state.options} removeAllOptions={this.removeAllOptions}/>
+                <Options options={this.state.options} removeAllOptions={this.removeAllOptions} 
+                removeSingleOption={this.removeSingleOption}/>
             </div>
         );
     };
@@ -76,7 +85,8 @@ var Options = (props) => {
     return (
         <div>
             <button onClick={props.removeAllOptions}>Remove All</button>
-            {props.options.map(option => { return <Option key={option} option={option}/> })}   
+            {props.options.map(option => { return <Option key={option} option={option} 
+                removeSingleOption={props.removeSingleOption}/> })}   
         </div>
     )
 }
@@ -84,7 +94,8 @@ var Options = (props) => {
 var Option = (props) => {
     return (
         <div>
-            <h4>{props.option}</h4>
+            {props.option}
+            <button onClick={(e) => props.removeSingleOption(props.option)}>Remove</button>
         </div>
     )
 }
