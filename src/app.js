@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import IndecisionApp from './components/IndecisionApp';
 
-console.log("running !!!!")
 
-
-ReactDOM.render(<p1>Hello</p1>, document.getElementById("appRoot"))
+ReactDOM.render(<IndecisionApp />, document.getElementById("appRoot"));

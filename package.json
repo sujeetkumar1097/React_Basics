@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "live-server public/",
     "webpack-build": "webpack --watch",
-    "babel-build": "babel src/app.js --out-file=public/scripts/index.js --presets=env,react -–watch"
+    "babel-build": "babel src/app.js --out-file=public/scripts/index.js --presets=env,react -–watch",
+    "dev-server-build" : "webpack-dev-server"
   },
   "author": "Sujeet Kumar",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "live-server": "^1.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "webpack": "^3.1.0"
+    "webpack": "^3.1.0",
+    "webpack-dev-server": "^2.5.1"
   }
 }
